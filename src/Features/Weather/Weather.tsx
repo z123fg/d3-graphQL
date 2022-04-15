@@ -11,10 +11,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Typography } from '@material-ui/core';
 import Chip from '../../components/Chip';
 
-const client = new ApolloClient({
-  uri: 'https://react-assessment.herokuapp.com/graphql',
-  cache: new InMemoryCache(),
-});
 
 const toF = (c: number) => (c * 9) / 5 + 32;
 
@@ -33,7 +29,7 @@ type WeatherData = {
   description: string;
   locationName: string;
 };
-type WeatherDataResponse = {
+export type WeatherDataResponse = {
   getWeatherForLocation: WeatherData;
 };
 
@@ -59,7 +55,5 @@ const Weather: FC = () => {
 };
 
 export default () => (
-  <ApolloProvider client={client}>
     <Weather />
-  </ApolloProvider>
 );

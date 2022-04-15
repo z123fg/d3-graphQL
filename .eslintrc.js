@@ -1,5 +1,5 @@
 module.exports = {
-  env: {
+ /*  env: {
     browser: true,
     es6: true,
     commonjs: true,
@@ -37,5 +37,6 @@ module.exports = {
     'arrow-parens': [0, { requireForBlockBody: false }],
     'jsx-quotes': 'off',
     'react/jsx-one-expression-per-line': 'off',
-  },
+    'linebreak-style':0
+  }, */
 };
