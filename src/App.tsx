@@ -42,17 +42,15 @@ function reducer(state: any, action: any) {
 }
 const App = () => {
   const [state, dispatch] = useReducer<any>(reducer, { metrics: [], measurements: [] });
-  useEffect(()=>{
-    console.log(state)
-  },[state])
+
   return (
     <MetricContext.Provider value={{state,dispatch}}>
       <ApolloProvider client={client}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Wrapper>
-            <Header />
-            <MetricsSelector/>
+            <Header />{/* 
+            <MetricsSelector/> */}
             <MeasurementChart  />
             <ToastContainer />
           </Wrapper>

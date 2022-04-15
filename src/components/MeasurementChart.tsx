@@ -6,13 +6,9 @@ import { WeatherDataResponse } from '../Features/Weather/Weather';
 import * as d3 from 'd3';
 import { MetricContext } from '../App';
 
-const useStyles = makeStyles({
-  card: {
-    margin: '5% 25%',
-  },
-});
 
-interface INowWhatProps {}
+
+interface INowWhatProps { }
 const query = gql`
   query ($input: [MeasurementQuery]) {
     getMultipleMeasurements(input: $input) {
@@ -28,14 +24,12 @@ const query = gql`
 `;
 
 const MeasurementChart: FC<INowWhatProps> = () => {
-  const classes = useStyles();
 
-  const {
+  /* const {
     state: { metrics },
     dispatch,
   } = useContext(MetricContext);
   useEffect(() => {
-    console.log(metrics);
   }, [metrics]);
 
   const [queryInput, setQueryInput] = useState(
@@ -43,37 +37,33 @@ const MeasurementChart: FC<INowWhatProps> = () => {
   );
   useEffect(() => {
     setQueryInput(metrics.map((metric: string) => ({ metricName: metric, after: recent30Minutes })));
-  }, [metrics]);
+  }, [metrics]); */
+const recent30Minutes = Date.now() - 18000; //ms
+  const [input,setInput] = useState([{ metricName: "waterTemp", after: recent30Minutes }])
 
   const svgRef = useRef<any>();
 
-  const width = 300;
-  const height = 150;
+  const width = 1000;
+  const height = 500;
   const margin = { top: 30, right: 30, bottom: 30, left: 60 };
   const svgHeight = height + margin.top + margin.bottom;
   const svgWidth = width + margin.left + margin.right;
 
-  const recent30Minutes = Date.now() - 1800000; //ms
+  
   const { loading, error, data } = useQuery<any>(query, {
     variables: {
-      input: queryInput,
-
-      /* [{
-        metricName: "waterTemp",
-        after: 1649997847953
-      }] */
+      input: input
     },
+    pollInterval: 500
   });
 
-  useEffect(() => {
-    console.log(loading, error, data);
-  }, [loading, error, data]);
+
 
   React.useEffect(() => {
-    if (data) {
-      console.log("svg")
-      const measurements: { __typename: string; at: number; value: number; metric: string; unit: string }[] =
-        data.getMultipleMeasurements[0].measurements;
+
+    const measurements: { __typename: string; at: number; value: number; metric: string; unit: string }[] =
+      data?.getMultipleMeasurements?.[0]?.measurements; 
+    if (measurements) {
         const xScale = d3
           .scaleTime()
           //@ts-ignore
@@ -82,8 +72,8 @@ const MeasurementChart: FC<INowWhatProps> = () => {
         const yScale = d3
           .scaleLinear()
           //@ts-ignore
-          .domain([d3.min(measurements, (d) => d.value) - 50, d3.max(measurements, (d) => d.value) + 50])
-          .range([height, 0]);
+          .domain([d3.min(measurements, (d) => d.value - 100), d3.max(measurements, (d) => d.value) + 50])
+          .range([height, 0])
         // Create root container where we will append all other chart elements
         const svgEl = d3.select(svgRef.current);
         svgEl.selectAll('*').remove(); // Clear svg content before adding new elements
@@ -92,44 +82,44 @@ const MeasurementChart: FC<INowWhatProps> = () => {
         const xAxis = d3
           .axisBottom(xScale)
           .ticks(5)
-          .tickSize(-height + margin.bottom);
+          .tickSize(-height + margin.bottom - 100);
         const xAxisGroup = svg
           .append('g')
-          .attr('transform', `translate(0, ${height - margin.bottom})`)
+          .attr('transform', `translate(0, ${height + 50})`)
           .call(xAxis);
         xAxisGroup.select('.domain').remove();
-        xAxisGroup.selectAll('line').attr('stroke', 'rgba(255, 255, 255, 0.2)');
-        xAxisGroup.selectAll('text').attr('opacity', 0.5).attr('color', 'white').attr('font-size', '0.75rem');
+        xAxisGroup.selectAll('line').attr('stroke', 'red');
+        xAxisGroup.selectAll('text').attr('opacity', 0.5).attr('color', 'red').attr('font-size', '0.75rem');
         // Add Y grid lines with labels
         const yAxis = d3
           .axisLeft(yScale)
-          .ticks(5)
+          .ticks(10)
           .tickSize(-width)
           .tickFormat((val) => `${val}%`);
         const yAxisGroup = svg.append('g').call(yAxis);
         yAxisGroup.select('.domain').remove();
-        yAxisGroup.selectAll('line').attr('stroke', 'rgba(255, 255, 255, 0.2)');
-        yAxisGroup.selectAll('text').attr('opacity', 0.5).attr('color', 'white').attr('font-size', '0.75rem');
+        yAxisGroup.selectAll('line').attr('stroke', 'blue');
+        yAxisGroup.selectAll('text').attr('opacity', 0.5).attr('color', 'red').attr('font-size', '0.75rem');
         // Draw the lines
         //@ts-ignore
         const line = d3.line().x((d) => xScale(d.at)).y((d) => yScale(d.value));
         svg
           .selectAll('.line')
-          .data(data)
+          .data([measurements])
           .enter()
           .append('path')
           .attr('fill', 'none')
-          .attr('stroke', (d:any) => d.color)
-          .attr('stroke-width', 3)
-          .attr('d', (d:any) => line(d.items));
-      
-    }
+          .attr('stroke', (d: any) => "red")
+          .attr('stroke-width', 1)
+          .attr('d', (d: any) => {
+            return line(d)
+          });
+
+      }
   }, [data]);
 
   return (
-    <Card className={classes.card}>
-      <svg ref={svgRef} width={svgWidth} height={svgHeight} />
-    </Card>
+    <svg ref={svgRef} width={svgWidth} height={svgHeight + 100} />
   );
 };
 

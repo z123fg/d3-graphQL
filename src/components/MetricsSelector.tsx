@@ -11,7 +11,7 @@ const metricsQuery = gql`
 
 const MetricsSelector: FC = () => {
     const { loading, error, data } = useQuery<any>(metricsQuery);
-    const [selectValue, setSelectValue] = useState<string>("");
+    const [selectValue, setSelectValue] = useState<string>("waterTemp");
 
     const {state, dispatch} = useContext(MetricContext)
 
