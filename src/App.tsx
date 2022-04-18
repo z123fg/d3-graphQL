@@ -9,6 +9,7 @@ import NowWhat from './components/MeasurementChart';
 import { ApolloClient, ApolloProvider, gql, InMemoryCache, useQuery } from '@apollo/client';
 import MeasurementChart from './components/MeasurementChart';
 import MetricsSelector from './components/MetricsSelector';
+import "./styles.css"
 
 const theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const MetricContext = React.createContext<any>(null);
+export const MetricContext = React.createContext<any>({measurements:[],metircs:[]});
 
 function reducer(state: any, action: any) {
   switch (action.type) {
@@ -49,8 +50,8 @@ const App = () => {
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Wrapper>
-            <Header />{/* 
-            <MetricsSelector/> */}
+            <Header />
+            <MetricsSelector/>
             <MeasurementChart  />
             <ToastContainer />
           </Wrapper>
