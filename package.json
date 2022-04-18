@@ -2,6 +2,7 @@
   "name": "eog-react-visualization-base",
   "version": "2.0.0",
   "private": true,
+  "homepage":"https://z123fg.github.io/d3-graphQL",
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.9.0",
@@ -26,6 +27,9 @@
     "subscriptions-transport-ws": "^0.9.19"
   },
   "scripts": {
+    "prepdeploy":"npm run build",
+    "deploy":"gh-pages -d build",
+    
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -54,6 +58,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.3.2",
     "react-scripts": "^4.0.3",
     "typescript": "^4.3.5"

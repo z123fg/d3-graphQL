@@ -7,7 +7,7 @@
   padding-bottom: 56.25%;
 }
 .chart-section{
-  max-width: 800px;
+  max-width: 1200px;
 }
 svg.chart {
   position: absolute;
@@ -19,4 +19,5 @@ svg.chart {
 
 *{
   font-family: 'Rubik', sans-serif;
+  font-weight: bold;
 }

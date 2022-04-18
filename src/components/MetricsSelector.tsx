@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import {TextField } from '@material-ui/core';
 import { Autocomplete } from '@mui/material';
-import React, { FC, Fragment, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { MetricContext } from '../App';
 
 
