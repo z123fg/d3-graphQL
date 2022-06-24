@@ -14,7 +14,7 @@ import Chip from '../../components/Chip';
 
 const toF = (c: number) => (c * 9) / 5 + 32;
 
-const query = gql`
+/* const query = gql`
   query ($latLong: WeatherQuery!) {
     getWeatherForLocation(latLong: $latLong) {
       description
@@ -23,7 +23,7 @@ const query = gql`
     }
   }
 `;
-
+ */
 type WeatherData = {
   temperatureinCelsius: number;
   description: string;
@@ -40,18 +40,19 @@ const Weather: FC = () => {
     latitude: getLocation.latitude || 29.7604,
     longitude: getLocation.longitude || -95.3698,
   };
-  const { loading, error, data } = useQuery<WeatherDataResponse>(query, {
+  /* const { loading, error, data } = useQuery<WeatherDataResponse>(query, {
     variables: {
       latLong,
     },
-  });
-
+  }); */
+/* 
   if (loading) return <LinearProgress />;
   if (error) return <Typography color="error">{error}</Typography>;
-  if (!data) return <Chip label="Weather not found" />;
-  const { locationName, description, temperatureinCelsius } = data.getWeatherForLocation;
+  if (!data) return <Chip label="Weather not found" />; */
+/*   const { locationName, description, temperatureinCelsius } = data.getWeatherForLocation; */
 
-  return <Chip label={`Weather in ${locationName}: ${description} and ${Math.round(toF(temperatureinCelsius))}°`} />;
+  return null
+  //<Chip label={`Weather in ${locationName}: ${description} and ${Math.round(toF(temperatureinCelsius))}°`} />;
 };
 
 export default () => (
