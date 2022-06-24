@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/d3-graphQL/static/css/main.811ae174.chunk.css",
-    "main.js": "/d3-graphQL/static/js/main.18e30188.chunk.js",
-    "main.js.map": "/d3-graphQL/static/js/main.18e30188.chunk.js.map",
+    "main.js": "/d3-graphQL/static/js/main.31b9a8cf.chunk.js",
+    "main.js.map": "/d3-graphQL/static/js/main.31b9a8cf.chunk.js.map",
     "runtime-main.js": "/d3-graphQL/static/js/runtime-main.63806669.js",
     "runtime-main.js.map": "/d3-graphQL/static/js/runtime-main.63806669.js.map",
     "static/css/2.74dc73a7.chunk.css": "/d3-graphQL/static/css/2.74dc73a7.chunk.css",
-    "static/js/2.bf687093.chunk.js": "/d3-graphQL/static/js/2.bf687093.chunk.js",
-    "static/js/2.bf687093.chunk.js.map": "/d3-graphQL/static/js/2.bf687093.chunk.js.map",
+    "static/js/2.41470153.chunk.js": "/d3-graphQL/static/js/2.41470153.chunk.js",
+    "static/js/2.41470153.chunk.js.map": "/d3-graphQL/static/js/2.41470153.chunk.js.map",
     "index.html": "/d3-graphQL/index.html",
     "static/css/2.74dc73a7.chunk.css.map": "/d3-graphQL/static/css/2.74dc73a7.chunk.css.map",
     "static/css/main.811ae174.chunk.css.map": "/d3-graphQL/static/css/main.811ae174.chunk.css.map",
-    "static/js/2.bf687093.chunk.js.LICENSE.txt": "/d3-graphQL/static/js/2.bf687093.chunk.js.LICENSE.txt"
+    "static/js/2.41470153.chunk.js.LICENSE.txt": "/d3-graphQL/static/js/2.41470153.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.63806669.js",
     "static/css/2.74dc73a7.chunk.css",
-    "static/js/2.bf687093.chunk.js",
+    "static/js/2.41470153.chunk.js",
     "static/css/main.811ae174.chunk.css",
-    "static/js/main.18e30188.chunk.js"
+    "static/js/main.31b9a8cf.chunk.js"
   ]
 }
